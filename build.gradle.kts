@@ -25,6 +25,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.data:spring-data-envers") // jpa + audit(version 기록?)
     implementation("org.springframework.boot:spring-boot-starter-jdbc") // 빼먹으면 application.yaml에 있는 datasource, jpa 설정 안가져옴. 그럴경우 직접 Config 작성해주어야함
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")

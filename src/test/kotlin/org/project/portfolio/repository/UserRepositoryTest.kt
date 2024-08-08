@@ -1,6 +1,8 @@
 package org.project.portfolio.repository
 
+import jakarta.validation.ConstraintViolationException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.project.portfolio.entity.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
@@ -26,5 +28,14 @@ class UserRepositoryTest @Autowired constructor(
         assertEquals(user.phone, result!!.phone)
         assertEquals(user.email, result!!.email)
         assertEquals(user.password, result!!.password)
+    }
+
+    @Test
+    fun `When invalid email then throw exception`() {
+        val user = User("James", "010-1234-5678", "----", "somepassword")
+        assertThrows<ConstraintViolationException> { 
+            userRepository.save(user)
+            entityManager.flush() 
+        }
     }
 }
